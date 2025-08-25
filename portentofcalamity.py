@@ -2,7 +2,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 
-types = ["Land", "Instant", "Kindred Instant", "Kindred Sorcery", "Sorcery", "Artifact", "Creature", "Enchantment"]
+types = ["Land", "Instant", "Kindred Instant", "Kindred Sorcery", "Sorcery", "Artifact", "Creature", "Enchantment"] # Adjust if additional card types or mixed types are added
 amount = [12, 15, 4, 2, 14, 5, 8, 0] # Adjust to however your deck is built, types may need to be adjusted if mixed types are included (artifact creature, etc).
 
 deck = [np.repeat(n,t) for n,t in zip(types, amount)]
@@ -20,6 +20,7 @@ deck = [l.tolist() for l in deck]
 deck = flatten(deck)
 
 def portent(seq):
+    # Note: if additional mixed types are added to the list "types", then additional if statements will need to be added to the while loop to accomodate the new types (same fashion).
     l = []
     while len(set(l))<4:
         l.append(seq[random.randint(0,len(seq)-1)])
@@ -32,7 +33,7 @@ def portent(seq):
         if "Kindred Instant" in l and "Kindred" in l:
             del l[-1]
             l.append("Instant")
-        if "Kindred Sorcery" in l and "Kindred" in l:
+        if "Kindred Sorcery" in l and "Kindred" in l: 
             del l[-1]
             l.append("Sorcery")
     return len(l)
