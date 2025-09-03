@@ -21,9 +21,11 @@ deck = flatten(deck)
 
 def portent(seq):
     # Note: if additional mixed types are added to the list "types", then additional if statements will need to be added to the while loop to accomodate the new types (same fashion).
+    seq = list(seq)
     l = []
-    while len(set(l))<4:
-        l.append(seq[random.randint(0,len(seq)-1)])
+    while len(set(l))<4 and seq:
+        idx = random.randint(0, len(seq) - 1)
+        l.append(seq.pop(idx))
         if "Kindred Instant" in l and "Kindred" not in l:
             del l[-1]
             l.append("Kindred")
@@ -79,6 +81,7 @@ print("Odds of meeting Portent of Calamity condition within X=4:", round(TotalCo
 print("Odds of meeting Portent of Calamity condition within X=5:", round(TotalCount[1]*100,3), "%")
 print("Odds of meeting Portent of Calamity condition within X=6:", round(TotalCount[2]*100,3), "%")
 print("Odds of meeting Portent of Calamity condition within X=7:", round(TotalCount[3]*100,3), "%")
+print("Odds of meeting Portent of Calamity condition within X=8:", round(TotalCount[4]*100,3), "%")
 print("-------------------------------------------------------------------------")
 plt.bar(["4","5","6","7","8","9","10","11","12","13","14","15","16+"] , AvgCount, width=0.90)
 plt.xlabel("X mana paid")
